@@ -3,14 +3,11 @@ library(dplyr)
 library(readr)
 library(stringr)
 
-# Load PATRIC genome data
-patric_genome_summary <- read.delim("genome_summary_5", dec = ".", colClasses = c("character", rep(NA, 19)))
-
 # Load updated PATRIC genome metadata
-patric_genome_metadata <- read.delim("genome_metadata_5", dec = ".", colClasses = c("character", rep(NA, 65)))
+patric_genome_metadata <- read.delim("genome_metadata", dec = ".", colClasses = c("character", rep(NA, 65)))
 rownames(patric_genome_metadata) <- patric_genome_metadata$genome_id
 
-# Load BVBRC genome data with specific filters
+# Load BVBRC genome data with specific filters as detailed in publication
 BVBRC_genome_nohf_compl <- read.delim("BVBRC_genome_COMPL_NOHF.txt", dec = ".", colClasses = c("character", rep(NA, 86)))
 rownames(BVBRC_genome_nohf_compl) <- BVBRC_genome_nohf_compl$Genome.ID
 
@@ -49,7 +46,6 @@ group1 <- patric_genome_metadata_sel[patric_genome_metadata_sel$groups=="Group 1
 group2 <- patric_genome_metadata_sel[patric_genome_metadata_sel$groups=="Group 2",]
 group3 <- patric_genome_metadata_sel[patric_genome_metadata_sel$groups=="Group 3",]
 group4 <- patric_genome_metadata_sel[patric_genome_metadata_sel$groups=="Group 4",]
-setwd("/Network/AltraBio/ProjetsAB/PEST-BIN/Projects/P-proteomes_pathogenic_non-pathogenic/WSPC")
 write.table(group1$biosample_accession, "bios_acc_patric_group1_v2.txt", quote = FALSE, row.names = FALSE, col.names = FALSE) 
 write.table(group2$biosample_accession, "bios_acc_patric_group2_v2.txt", quote = FALSE, row.names = FALSE, col.names = FALSE) 
 write.table(group3$biosample_accession, "bios_acc_patric_group3_v2.txt", quote = FALSE, row.names = FALSE, col.names = FALSE) 
