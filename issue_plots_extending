@@ -1,0 +1,98 @@
+#### Debugging
+
+# Molecular biology
+
+## Rows {height=50%}
+
+::: {.panel-tabset}
+
+### Plasmids
+
+```{ojs observa5}
+//| label: plasmids
+//| expandable: false
+
+Plot.plot({
+  y: {label: 'Number of genomes (n)', grid: true},
+  marks: [
+    Plot.barY(transpose(plasm), {x: "plasmids", y: "count", tip: true, fill: "#CCAD3F"}),
+    Plot.ruleY([0])
+  ],
+  width: document.body.clientWidth, // Responsive width
+  height: document.body.clientHeight / 2 // Adjust the height as needed
+})
+
+### Contigs
+
+```{ojs observa6}
+//| label: contigs
+//| expandable: false
+
+Plot.plot({
+  y: {label: 'Number of genomes (n)', grid: true},
+  marks: [
+    Plot.barY(transpose(conti), {x: "contigs", y: "count", tip: true, fill: "#CCAD3F"}),
+    Plot.ruleY([0])
+  ],
+  width: document.body.clientWidth, // Responsive width
+  height: document.body.clientHeight / 2 // Adjust the height as needed
+})
+
+Rows {height=50%}
+::: {.panel-tabset}
+
+//| label: genomelength
+//| expandable: false
+
+Plot.plot({
+  y: {label: 'Number of genomes', grid: true},
+  x: {label: 'Genome length (bp)'},
+  color: {legend: true,
+      domain: ['NHP', 'HP'],
+      range: ['#2F5A80', '#AD3426']
+  },
+  marks: [
+    Plot.rectY(transpose(xxx), Plot.binX({y: "count"}, {x: "genome_length", fill: "pathogenicity_label", tip: true})),
+    Plot.ruleY([0])
+  ],
+  width: document.body.clientWidth, // Responsive width
+  height: document.body.clientHeight / 2 // Adjust the height as needed
+})
+
+//| label: gc_content
+//| expandable: false
+
+Plot.plot({
+  y: {label: "Number of genomes", grid: true},
+  x: {label: "GC content (%)"},
+  color: {legend: true,
+      domain: ['NHP', 'HP'],
+      range: ['#2F5A80', '#AD3426']
+  },
+  marks: [
+    Plot.rectY(transpose(xxx), Plot.binX({y: "count"}, {x: "gc_content", fill: "pathogenicity_label", tip: true})),
+    Plot.ruleY([0])
+  ],
+  width: document.body.clientWidth, // Responsive width
+  height: document.body.clientHeight / 2 // Adjust the height as needed
+})
+
+
+//| label: patric_cds
+//| expandable: false
+
+Plot.plot({
+  y: {label: "Number of genomes", grid: true},
+  x: {label: "Patric cds (Number)"},
+  color: {legend: true,
+      domain: ['NHP', 'HP'],
+      range: ['#2F5A80', '#AD3426']
+  },
+  marks: [
+    Plot.rectY(transpose(xxx), Plot.binX({y: "count"}, {x: "patric_cds", fill: "pathogenicity_label", tip: true})),
+    Plot.ruleY([0])
+  ],
+  width: document.body.clientWidth, // Responsive width
+  height: document.body.clientHeight / 2 // Adjust the height as needed
+})
+
